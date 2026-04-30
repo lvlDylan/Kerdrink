@@ -20,5 +20,5 @@
     <?php endif; ?>
 
     <link rel="stylesheet" href="/css/styles.css">
-    <link rel="icon" type="image/svg+xml" href="/resources/favicon.svg">
+    <link rel="icon" type="image/svg+xml" href="/img/favicon.svg">
 </head>

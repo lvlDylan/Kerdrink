@@ -5,10 +5,10 @@ class Database
     private function __clone() {}
 
     private const string DB_HOST = "localhost";
-    private const string DB_USER = "myroot";
-    private const string DB_PASSWORD = "root123*";
+    private const string DB_USER = "dylan";
+    private const string DB_PASSWORD = "root";
 
-    private const string DB_NAME = "dl_kerdrink";
+    private const string DB_NAME = "site_marchand";
 
     private static PDO | null $instance = null;
 

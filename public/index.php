@@ -1,6 +1,13 @@
 <?php 
 define("ROOT", dirname(__DIR__) . DIRECTORY_SEPARATOR);
 
+spl_autoload_register(function ($className) {
+   $file = ROOT . "app" . DIRECTORY_SEPARATOR . "controllers" . DIRECTORY_SEPARATOR . $className . ".php";
+   if (file_exists($file)) {
+       require_once $file;
+   }
+});
+
 require_once ROOT . "config/database.php";
 
 $db = Database::getInstance();
