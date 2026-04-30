@@ -1,0 +1,25 @@
+# --- Logs et Temporaires ---
+*.log
+tmp/
+temp/
+sessions/
+
+# --- Système d'exploitation ---
+# Linux
+*~
+*.swp
+*.swo
+
+# Corbeille et miniatures
+.Trash-*
+.directory
+.fuse_hidden*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# --- IDE & Éditeurs ---
+.vscode/
+.idea/
