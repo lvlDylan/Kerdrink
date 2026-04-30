@@ -23,3 +23,6 @@ Desktop.ini
 # --- IDE & Éditeurs ---
 .vscode/
 .idea/
+
+# --- Bootstrap --- 
+public/css/*.min.css

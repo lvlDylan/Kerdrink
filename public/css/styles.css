@@ -1,0 +1,176 @@
+:root {
+    --bg: #F4E9DC;             /* crème clair */
+    --bg-card: #FFFFFF;        /* carte propre type menu */
+    --acc: #A9712B;            /* brun doré */
+    --acc-soft: rgba(169, 113, 43, 0.08);
+    --txt: #2B1E16;            /* brun texte */
+    --txt-mute: #7A6A58;       /* brun doux */
+    --border: rgba(169, 113, 43, 0.15);
+}
+
+body { background-color: var(--bg); color: var(--txt); transition: 0.5s; font-family: 'Inter', sans-serif; }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+.text-premium {
+    background: linear-gradient(135deg, var(--txt) 30%, var(--acc));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    letter-spacing: -1px;
+}
+
+.product-card {
+    background: var(--bg-card) !important;
+    border: 1px solid var(--border) !important;
+    color: var(--txt);
+}
+
+.product-card p {
+    color: var(--txt-mute);
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--acc) !important;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 20px rgba(0, 212, 255, 0.1) !important;
+}
+
+.img-product {
+    filter: drop-shadow(0 15px 30px rgba(0,0,0,0.8));
+    transition: 0.5s ease;
+}
+
+.product-card:hover .img-product {
+    transform: scale(1.1) rotate(2deg);
+}
+
+.product-card div[style*="background: var(--acc-soft)"] {
+    animation: slideDown 0.4s ease-out;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.floating { animation: float 6s ease-in-out infinite alternate; }
+@keyframes float { from { transform: translateY(0); } to { transform: translateY(-20px); } }
+
+.btn-premium {
+    background: transparent; border: 1px solid var(--acc); color: var(--acc);
+    border-radius: 14px; font-weight: 600; padding: 12px 24px; transition: 0.3s;
+    border-color: var(--acc);
+}
+.btn-premium:hover {
+    background: var(--acc);
+    color: #000;
+    box-shadow: 0 0 15px var(--acc);
+}
+
+.main-nav {
+    background-color: var(--bg);
+    top: 0;
+    z-index: 1000;
+}
+.nav-links, .nav-utils, .destinations-grid {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.main-nav a {
+    text-decoration: none;
+    color: inherit;
+    font-size: 0.9rem;
+}
+
+.cart-btn {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    color: var(--txt);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cart-btn:hover {
+    color: var(--acc);
+    border-color: var(--acc);
+    background: var(--acc-soft);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px var(--acc-soft);
+}
+
+::placeholder {
+    color: var(--txt-mute) !important;
+    opacity: 0.5 !important;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    background-color: transparent;
+}
+
+.min-vh-75 {
+    min-height: 75vh;
+}
+
+.text-gradient {
+    background: linear-gradient(to right, #fff, #666);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.ls-lg {
+    letter-spacing: 0.2rem;
+}
+
+.table {
+    --bs-table-bg: transparent !important;
+    --bs-table-color: var(--txt) !important;
+    background-color: transparent !important;
+    color: var(--txt) !important;
+    border-color: var(--border) !important;
+}
+
+.nav-links a {
+    position: relative;
+    padding: 5px 0;
+    transition: color 0.3s ease;
+}
+
+.nav-links a.active-link {
+    color: var(--acc) !important;
+    font-weight: 600;
+}
+
+.nav-links a.active-link::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 25%;
+    width: 50%;
+    height: 2px;
+    background: var(--acc);
+    box-shadow: 0 0 10px var(--acc);
+    border-radius: 2px;
+}
+
+.nav-links a:hover {
+    color: var(--acc);
+    opacity: 0.8;
+}
