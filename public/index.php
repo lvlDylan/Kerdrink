@@ -12,11 +12,11 @@ require_once ROOT . "config/database.php";
 
 $db = Database::getInstance();
 
-$page = $_GET["p"] ?? "accueil";
+$page = strtolower($_GET["p"] ?? $_GET["page"] ?? "accueil");
 
 $routes = [
     "accueil" => ["HomeController", "index"],
-    "produits" => ["ProduitsController", "index"],
+    "produits" => ["ProductController", "index"],
 ];
 
 try {
