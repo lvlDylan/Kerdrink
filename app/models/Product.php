@@ -1,8 +1,8 @@
 <?php
 
-class Product
+readonly class Product
 {
-    private readonly PDO $db;
+    private PDO $db;
 
     public function __construct(PDO $db)
     {
@@ -23,7 +23,9 @@ class Product
 
     public function getById(int $id): array
     {
-        $sql = "SELECT * FROM produit WHERE numProduit = $id";
-        return $this->db->query($sql)->fetch(PDO::FETCH_ASSOC);
+        $sql = "SELECT * FROM produit WHERE numProduit = :id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute(['id' => $id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 }

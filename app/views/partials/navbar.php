@@ -23,10 +23,7 @@ function isActive($pageName, $currentPage) {
                 <a href="/?page=admin" class="<?= isActive('admin', $currentPage) ?>">Admin</a>
             <?php endif; ?>
 
-            <form action="../lib/actions/connexion.php?d=true" method="POST" class="d-inline">
-                <input type="hidden" name="logout" value="true">
-                <button type="submit" class="btn btn-link p-0 border-0 text-reset text-decoration-none shadow-none">Déconnexion</button>
-            </form>
+            <a href="/?page=deconnexion" class="<?= isActive('connexion', $currentPage) ?>">Déconnexion</a>
         <?php else: ?>
             <a href="/?page=connexion" class="<?= isActive('connexion', $currentPage) ?>">Connexion</a>
         <?php endif; ?>

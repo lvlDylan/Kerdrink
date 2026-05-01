@@ -1,6 +1,12 @@
 <?php
 define("ROOT", dirname(__DIR__) . DIRECTORY_SEPARATOR);
 
+if (str_starts_with($_SERVER['SERVER_SOFTWARE'] ?? '', 'PHP')) {
+    session_save_path(ROOT . "/tmp/");
+}
+
+session_start();
+
 spl_autoload_register(function ($className) {
     $dirs = [
         ROOT . "app" . DIRECTORY_SEPARATOR . "controllers" . DIRECTORY_SEPARATOR,
@@ -24,6 +30,9 @@ $page = strtolower($_GET["p"] ?? $_GET["page"] ?? "accueil");
 $routes = [
     "accueil" => ["HomeController", "index"],
     "produits" => ["ProductController", "index"],
+    "connexion" => ["AuthController", "index"],
+    "connexion-exe" => ["AuthController", "login"],
+    "deconnexion" => ["AuthController", "logout"],
 ];
 
 try {
