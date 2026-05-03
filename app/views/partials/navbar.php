@@ -20,8 +20,12 @@ function isActive($pageName, $currentPage): string
         <a href="/?page=produits" class="<?= isActive('produits', $currentPage) ?>">Produits</a>
 
         <?php if (isset($_SESSION["user"])): ?>
-            <?php if ($_SESSION["user"]["role"] === "adm"): ?>
+            <?php if (!empty($_SESSION["user"]["role"]) && $_SESSION["user"]["role"] === "adm"): ?>
                 <a href="/?page=admin" class="<?= isActive('admin', $currentPage) ?>">Admin</a>
+            <?php endif; ?>
+
+            <?php if (isset($_SESSION["user"]["idClient"])): ?>
+                <a href="/?page=profile" class="<?= isActive('profile', $currentPage) ?>">Profile</a>
             <?php endif; ?>
 
             <a href="/?page=deconnexion">Déconnexion</a>

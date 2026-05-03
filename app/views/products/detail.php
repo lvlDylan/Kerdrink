@@ -1,4 +1,4 @@
-<?php /** @var array $product  @var array $category */ /** @var array $category */?>
+<?php /** @var array $product */ /** @var array $category */?>
 <main class="container py-5">
     <div class="row align-items-center min-vh-75 g-5">
         <div class="col-lg-7 text-center">

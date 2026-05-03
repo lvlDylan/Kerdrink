@@ -5,7 +5,7 @@ class AdminController
     public function index(PDO $db): void
     {
         $userModel = new User($db);
-        $clientModel = new Client($db);
+        $clientModel = new Customer($db);
         $users = $userModel->getAll();
         $clients = $clientModel->getAll();
 

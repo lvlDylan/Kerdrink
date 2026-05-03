@@ -24,7 +24,7 @@ class AuthController {
         $user = $userModel->getByLogin($login);
 
         if (!$user) {
-            $clientModel = new Client($db);
+            $clientModel = new Customer($db);
             $user = $clientModel->getByEmailOrPseudo($login);
         }
 

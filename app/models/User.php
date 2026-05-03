@@ -23,7 +23,7 @@ readonly class User
         return $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getByLogin(string $login): array
+    public function getByLogin(string $login): array | false
     {
         $sql = "SELECT * FROM users WHERE login = :login;";
         $stmt = $this->db->prepare($sql);

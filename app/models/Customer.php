@@ -1,6 +1,6 @@
 <?php
 
-readonly class Client
+readonly class Customer
 {
     private PDO $db;
 
@@ -23,7 +23,7 @@ readonly class Client
         return $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getByEmail(string $email): array
+    public function getByEmail(string $email): array | false
     {
         $sql = "SELECT * FROM client WHERE mail = :mail;";
         $stmt = $this->db->prepare($sql);
@@ -31,7 +31,7 @@ readonly class Client
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function getByPseudo(string $pseudo): array
+    public function getByPseudo(string $pseudo): array | false
     {
         $sql = "SELECT * FROM client WHERE pseudo = :pseudo;";
         $stmt = $this->db->prepare($sql);
@@ -39,7 +39,7 @@ readonly class Client
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function getByEmailOrPseudo(string $login): array
+    public function getByEmailOrPseudo(string $login): array | false
     {
         $sql = "SELECT * FROM client WHERE (pseudo = :pseudo OR mail = :mail);";
         $stmt = $this->db->prepare($sql);

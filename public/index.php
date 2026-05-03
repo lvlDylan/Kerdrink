@@ -33,6 +33,7 @@ $routes = [
     "detail" => ["ProductController", "detail"],
     "connexion" => ["AuthController", "index"],
     "admin" => ["AdminController", "index", "admin"],
+    "profile" => ["CustomerController", "index", "client"],
     "connexion-exe" => ["AuthController", "login"],
     "deconnexion" => ["AuthController", "logout"],
 ];
@@ -45,15 +46,24 @@ try {
 
     $controllerInfo = $routes[$page];
 
-    if ($controllerInfo && $controllerInfo[2]) {
+    if ($controllerInfo && !empty($controllerInfo[2])) {
         if (!isset($_SESSION["user"])) {
             header("location: /?page=connexion&error=notLoggedIn");
             exit();
         }
 
-        if (!isset($_SESSION["user"]["role"]) || $_SESSION["user"]["role"] !== "adm") {
-            header("location: /?page=accueil&error=authRequired");
-            exit();
+        if ($controllerInfo[2] === "admin") {
+            if (!isset($_SESSION["user"]["role"]) || $_SESSION["user"]["role"] !== "adm") {
+                header("location: /?page=accueil&error=authRequired");
+                exit();
+            }
+        }
+
+        if ($controllerInfo[2] === "client") {
+            if (!isset($_SESSION["user"]["idClient"])) {
+                header("location: /?page=connexion&error=notLoggedIn");
+                exit();
+            }
         }
     }
 
