@@ -10,9 +10,7 @@ function isActive($pageName, $currentPage): string
     <a href="/" class="fs-1">Kozh Spirit</a>
 
     <div class="nav-utils">
-        <button class="cart-btn">
-            <i class="bi bi-cart"></i>
-        </button>
+        <a href="/?page=panier" class="cart-btn"><i class="bi bi-cart"></i></a>
     </div>
 
     <div class="nav-links mt-lg-2">
@@ -28,7 +26,7 @@ function isActive($pageName, $currentPage): string
                 <a href="/?page=profile" class="<?= isActive('profile', $currentPage) ?>">Profile</a>
             <?php endif; ?>
 
-            <a href="/?page=deconnexion">Déconnexion</a>
+            <a href="/?page=deconnexion-exe">Déconnexion</a>
         <?php else: ?>
             <a href="/?page=connexion">Connexion</a>
         <?php endif; ?>

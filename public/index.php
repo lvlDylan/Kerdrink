@@ -34,8 +34,13 @@ $routes = [
     "connexion" => ["AuthController", "index"],
     "admin" => ["AdminController", "index", "admin"],
     "profile" => ["CustomerController", "index", "client"],
+    "historique" => ["CartController", "history", "client"],
+    "panier" => ["CartController", "index", "client"],
+    "ajouter-panier-exe" => ["CartController", "add", "client"],
+    "retirer-panier-exe" => ["CartController", "remove", "client"],
+    "valider-panier-exe" => ["CartController", "confirm", "client"],
     "connexion-exe" => ["AuthController", "login"],
-    "deconnexion" => ["AuthController", "logout"],
+    "deconnexion-exe" => ["AuthController", "logout"],
 ];
 
 try {

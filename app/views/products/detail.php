@@ -38,7 +38,7 @@
                     </div>
                 </div>
 
-                <form action="#" method="POST">
+                <form action="/?page=ajouter-panier-exe" method="POST">
                     <input type="hidden" name="id" value="<?= $product["numProduit"] ?>">
 
                     <div class="d-flex justify-content-between align-items-center mb-4 p-2 rounded-3 border"
@@ -67,7 +67,7 @@
 
                     <button class="btn w-100 py-3 fw-bold rounded-3 text-uppercase shadow-sm"
                             style="background: var(--acc); color: white; border: none; transition: 0.3s;">
-                        COMMANDER <i class="bi bi-bag-plus ms-2"></i>
+                        AJOUTER AU PANIER <i class="bi bi-bag-plus ms-2"></i>
                     </button>
                 </form>
             </div>
