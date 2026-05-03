@@ -20,7 +20,7 @@ $pageTitle = "Oups ! Page introuvable";
             </header>
 
             <div class="py-4 mb-5">
-                <i class="bi bi-exclamation-octagon text-premium" style="font-size: 5rem;"></i>
+                <i class="bi bi-exclamation-octagon" style="font-size: 4rem;"></i>
             </div>
 
             <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">

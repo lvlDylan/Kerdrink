@@ -24,9 +24,9 @@ function isActive($pageName, $currentPage): string
                 <a href="/?page=admin" class="<?= isActive('admin', $currentPage) ?>">Admin</a>
             <?php endif; ?>
 
-            <a href="/?page=deconnexion" class="<?= isActive('connexion', $currentPage) ?>">Déconnexion</a>
+            <a href="/?page=deconnexion">Déconnexion</a>
         <?php else: ?>
-            <a href="/?page=connexion" class="<?= isActive('connexion', $currentPage) ?>">Connexion</a>
+            <a href="/?page=connexion">Connexion</a>
         <?php endif; ?>
     </div>
 </nav>

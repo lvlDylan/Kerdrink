@@ -56,7 +56,7 @@ require_once ROOT . "app/views/partials/navbar.php";
             </form>
 
             <footer class="mt-4 text-center">
-                <a href="/?page=inscription" class="small text-decoration-none opacity-50 hover-opacity-100" style="color: var(--txt);">
+                <a href="/?page=inscription" class="small text-decoration-none opacity-75 hover-opacity-100" style="color: var(--txt);">
                     Pas encore de compte client ? <span style="color: var(--acc);">S'inscrire</span>
                 </a>
             </footer>
