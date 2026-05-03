@@ -15,8 +15,52 @@ class AuthController {
         require_once ROOT . "app/views/layout.php";
     }
 
+    public function register(): void
+    {
+        $error = $_GET['error'] ?? null;
+
+        ob_start();
+        require_once ROOT . "app/views/auth/register.php";
+        $content = ob_get_clean();
+
+        require_once ROOT . "app/views/layout.php";
+    }
+
     #[NoReturn]
-    public static function login(PDO $db): void {
+    public function registerCustomer(PDO $db): void
+    {
+        $lastName = $_POST["lastName"] ?? null;
+        $firstName = $_POST["firstName"] ?? null;
+        $pseudo = $_POST["pseudo"] ?? null;
+        $password = $_POST["password"] ?? null;
+
+        $email = $_POST["email"] ?? "";
+        $telephone = $_POST["telephone"] ?? "";
+
+        if (empty($lastName) || empty($firstName) || empty($pseudo) || empty($password)) {
+            header("location: /?page=inscription&error=empty");
+            exit();
+        }
+
+        $customerModel = new Customer($db);
+        if ($customerModel->register($lastName, $firstName, $pseudo, $password, $email, $telephone)) {
+            $customer = $customerModel->getByEmailOrPseudo($pseudo);
+            if ($customer) {
+                unset($customer["mdp"]);
+                $_SESSION["user"] = $customer;
+                header("location: /?page=accueil");
+            } else {
+                header("location: /?page=inscription&error=error");
+            }
+        } else {
+            header("location: /?page=inscription&error=invalid");
+        }
+
+        exit();
+    }
+
+    #[NoReturn]
+    public function login(PDO $db): void {
         $login = $_POST["login"] ?? "";
         $password = $_POST["password"] ?? "";
 
@@ -39,7 +83,7 @@ class AuthController {
     }
 
     #[NoReturn]
-    public static function logout(): void {
+    public function logout(): void {
         $_SESSION = array();
         session_destroy();
         header("location: /?page=accueil");

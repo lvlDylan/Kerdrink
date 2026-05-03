@@ -46,4 +46,20 @@ readonly class Customer
         $stmt->execute(['pseudo' => $login, 'mail' => $login]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function register(string $lastName, string $firstName, string $pseudo, string $password, string $email, string $telephone): bool
+    {
+
+        $sqlExist = "SELECT pseudo FROM client WHERE pseudo = :pseudo OR mail = :mail;";
+        $stmtExist = $this->db->prepare($sqlExist);
+        $stmtExist->execute(['pseudo' => $pseudo, 'mail' => $email]);
+        if ($stmtExist->rowCount() > 0) {
+            return false;
+        }
+
+        $sql = "INSERT INTO client (nom, prenom, pseudo, mdp, mail, telephone) VALUES (:nom, :prenom, :pseudo, :mdp, :mail, :telephone)";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute(["nom" => $lastName, "prenom" => $firstName, "pseudo" => $pseudo, "mdp" => $password, "mail" => $email, "telephone" => $telephone]);
+        return true;
+    }
 }

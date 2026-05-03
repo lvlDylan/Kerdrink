@@ -23,7 +23,7 @@ function isActive($pageName, $currentPage): string
             <?php endif; ?>
 
             <?php if (isset($_SESSION["user"]["idClient"])): ?>
-                <a href="/?page=profile" class="<?= isActive('profile', $currentPage) ?>">Profile</a>
+                <a href="/?page=profil" class="<?= isActive('profil', $currentPage) ?>">Profil</a>
             <?php endif; ?>
 
             <a href="/?page=deconnexion-exe">Déconnexion</a>

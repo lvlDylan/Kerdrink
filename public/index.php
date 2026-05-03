@@ -32,14 +32,16 @@ $routes = [
     "produits" => ["ProductController", "index"],
     "detail" => ["ProductController", "detail"],
     "connexion" => ["AuthController", "index"],
+    "inscription" => ["AuthController", "register"],
     "admin" => ["AdminController", "index", "admin"],
-    "profile" => ["CustomerController", "index", "client"],
+    "profil" => ["CustomerController", "index", "client"],
     "historique" => ["CartController", "history", "client"],
     "panier" => ["CartController", "index", "client"],
     "ajouter-panier-exe" => ["CartController", "add", "client"],
     "retirer-panier-exe" => ["CartController", "remove", "client"],
     "valider-panier-exe" => ["CartController", "confirm", "client"],
     "connexion-exe" => ["AuthController", "login"],
+    "inscription-exe" => ["AuthController", "registerCustomer"],
     "deconnexion-exe" => ["AuthController", "logout"],
 ];
 

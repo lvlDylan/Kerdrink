@@ -6,7 +6,7 @@
             <p class="small opacity-50 text-uppercase tracking-widest">Identifiez-vous pour profiter pleinement de notre boutique</p>
         </header>
 
-        <section class="card planet-card p-4 p-md-5 shadow-lg border-0">
+        <section class="card product-card p-4 p-md-5 shadow-lg border-0">
 
             <?php if (isset($_GET['error'])): ?>
                 <div class="d-flex align-items-center p-3 mb-4 rounded-3 border-start border-4 shadow-sm"

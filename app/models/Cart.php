@@ -104,8 +104,21 @@ readonly class Cart
 
     public function confirmCart(int $orderId): void
     {
-        $sql = "UPDATE commande SET idStatut = 'ENC' WHERE noCommande = :orderId AND idStatut = 'PAN'";
+
+        $sql = "UPDATE commande SET idStatut = 'ENC', dateCommande = NOW() WHERE noCommande = :orderId AND idStatut = 'PAN'";
         $stmt = $this->db->prepare($sql);
         $stmt->execute(["orderId" => $orderId]);
+
+        $sqlProducts = "SELECT numProduit, quantite FROM contenir WHERE noCommande = :orderId";
+        $stmtProducts = $this->db->prepare($sqlProducts);
+        $stmtProducts->execute(["orderId" => $orderId]);
+        $items = $stmtProducts->fetchAll(PDO::FETCH_ASSOC);
+
+        $sqlUpdateStocks = "UPDATE produit SET stock = stock - :qty WHERE numProduit = :idProduct";
+        $stmtUpdateStocks = $this->db->prepare($sqlUpdateStocks);
+
+        foreach ($items as $item) {
+            $stmtUpdateStocks->execute(["qty" => $item['quantite'], "idProduct" => $item['numProduit']]);
+        }
     }
 }

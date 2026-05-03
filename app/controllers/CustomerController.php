@@ -9,7 +9,7 @@ class CustomerController
         $pageTitle = $customer["prenom"] . " - KerDrink";
 
         ob_start();
-        require_once ROOT . "app/views/customer/profile.php";
+        require_once ROOT . "app/views/customer/profil.php";
         $content = ob_get_clean();
         require_once ROOT . "app/views/layout.php";
     }
