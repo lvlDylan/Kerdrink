@@ -1,6 +1,7 @@
 <?php
 $currentPage = $_GET['page'] ?? 'accueil';
-function isActive($pageName, $currentPage) {
+function isActive($pageName, $currentPage): string
+{
     return $pageName === $currentPage ? 'active-link' : '';
 }
 ?>
