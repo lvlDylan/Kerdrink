@@ -1,4 +1,4 @@
-<?php /** @var array $product */?>
+<?php /** @var array $product  @var array $category */ /** @var array $category */?>
 <main class="container py-5">
     <div class="row align-items-center min-vh-75 g-5">
         <div class="col-lg-7 text-center">
@@ -15,7 +15,7 @@
                         <i class="bi bi-chevron-left"></i> CATALOGUES
                     </a>
                 </nav>
-                <h6 class="text-uppercase fw-bold mb-2"><?= $product["libelleCategorie"] ?></h6>
+                <h6 class="text-uppercase fw-bold mb-2"><?= $category["libelleCategorie"] ?></h6>
                 <h1 class="display-3 fw-bold mb-3"><?= $product["nomProduit"] ?></h1>
                 <p class="lead opacity-50 mb-4"><?= $product["descriptif"] ?></p>
             </div>
