@@ -1,9 +1,3 @@
-<?php
-require_once ROOT . "app/views/partials/head.php";
-require_once ROOT . "app/views/partials/navbar.php";
-$pageTitle = "Oups ! Page introuvable";
-?>
-
 <main class="container py-5">
     <div class="row min-vh-75 align-items-center justify-content-center">
         <div class="col-12 col-md-8 col-lg-6 text-center">

@@ -1,8 +1,3 @@
-<?php
-require_once ROOT . "app/views/partials/head.php";
-require_once ROOT . "app/views/partials/navbar.php";
-?>
-
 <main class="container d-flex align-items-center justify-content-center min-vh-75 py-5">
     <div class="col-12 col-sm-10 col-md-8 col-lg-5 col-xl-4">
 

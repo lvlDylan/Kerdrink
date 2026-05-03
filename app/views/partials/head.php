@@ -1,7 +1,10 @@
+<!DOCTYPE html>
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="author" content="Lavieille Dylan">
-    <meta name="description" content="Essayer les voyages intergalactiques avec nos nouvelles destinations !">
+    <meta name="author" content="Quiniou-Diraison Gurvan">
+    <meta name="description" content="Parcourez notre cave d'exception.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="language" content="fr">
 
@@ -22,3 +25,4 @@
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="icon" type="image/svg+xml" href="/img/favicon.svg">
 </head>
+<body>

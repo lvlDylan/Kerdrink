@@ -8,6 +8,10 @@ class HomeController {
         $productModel = new Product($db);
         $products = $productModel->getLatest();
         $pageTitle = "Bienvenue dans notre cave";
+
+        ob_start();
         require_once ROOT . "app/views/products/index.php";
+        $content = ob_get_clean();
+        require_once ROOT . "app/views/layout.php";
     }
 }

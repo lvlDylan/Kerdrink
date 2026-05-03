@@ -8,7 +8,11 @@ class AuthController {
     {
         $error = $_GET['error'] ?? null;
 
+        ob_start();
         require_once ROOT . "app/views/auth/login.php";
+        $content = ob_get_clean();
+
+        require_once ROOT . "app/views/layout.php";
     }
 
     #[NoReturn]
@@ -38,7 +42,7 @@ class AuthController {
     public static function logout(): void {
         $_SESSION = array();
         session_destroy();
-        header("Location: /?p=accueil");
+        header("location: /?p=accueil");
         exit();
     }
 }

@@ -31,6 +31,7 @@ $routes = [
     "accueil" => ["HomeController", "index"],
     "produits" => ["ProductController", "index"],
     "connexion" => ["AuthController", "index"],
+    "admin" => ["AdminController", "index", "admin"],
     "connexion-exe" => ["AuthController", "login"],
     "deconnexion" => ["AuthController", "logout"],
 ];
@@ -42,6 +43,19 @@ try {
     }
 
     $controllerInfo = $routes[$page];
+
+    if ($controllerInfo && $controllerInfo[2]) {
+        if (!isset($_SESSION["user"])) {
+            header("location: /?p=connexion&error=notLoggedIn");
+            exit();
+        }
+
+        if (!isset($_SESSION["user"]["role"]) || $_SESSION["user"]["role"] !== "adm") {
+            header("location: /?p=accueil&error=authRequired");
+            exit();
+        }
+    }
+
     $className = $controllerInfo[0];
     $methodName = $controllerInfo[1];
 
@@ -61,6 +75,11 @@ try {
     http_response_code($code);
     error_log("Erreur lors du routage : " . $e);
 
+    $pageTitle = "KerDrink - Erreur " . $code;
+
+    ob_start();
     require_once ROOT . "app" . DIRECTORY_SEPARATOR . "views" . DIRECTORY_SEPARATOR . "404.php";
+    $content = ob_get_clean();
+    require_once ROOT . "app" . DIRECTORY_SEPARATOR . "views" . DIRECTORY_SEPARATOR . "layout.php";
     exit();
 }

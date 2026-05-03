@@ -1,9 +1,14 @@
-<?php
-require_once ROOT . "app/views/partials/head.php";
-require_once ROOT . "app/views/partials/navbar.php";
-$pageTitle = $pageTitle ?? "Découvrez nos produits";
-?>
 <main class="container py-5">
+
+    <?php if (isset($_GET['error']) && $_GET['error'] === 'authRequired'): ?>
+        <div class="alert alert-danger border-0 shadow-sm mb-4 d-flex align-items-center" role="alert" id="error-alert">
+            <i class="bi bi-exclamation-octagon-fill fs-4 me-3"></i>
+            <div>
+                <strong>Accès refusé :</strong> Vous n'avez pas les droits nécessaires pour accéder à cette page.
+            </div>
+        </div>
+    <?php endif; ?>
+
     <header class="text-center py-5">
         <h1 class="display-2 fw-black text-premium mb-2">KerDrink</h1>
 
@@ -24,7 +29,7 @@ $pageTitle = $pageTitle ?? "Découvrez nos produits";
                         <img src="/img/<?= $p["nomImage"] ?>" class="img-fluid img-product" style="height:200px;" alt="Image de <?= $p["nomProduit"] ?>">
                         <div class="position-absolute bottom-0 start-50 translate-middle-x mb-n2">
                             <span class="badge bg-black border border-secondary px-3 py-2 rounded-pill">
-                                <?= number_format($p["prixUnitaire"], 0, '.', ' ') ?> €
+                                <?= number_format($p["prixUnitaire"], 2, ',', ' ') ?> €
                             </span>
                         </div>
                     </div>
