@@ -22,7 +22,7 @@
                 </div>
             <?php endif; ?>
 
-            <form action="/?p=connexion-exe" method="POST">
+            <form action="/?page=connexion-exe" method="POST">
                 <div class="mb-4">
                     <label class="form-label small opacity-50 fw-bold" style="color: var(--txt); letter-spacing: 1px;">IDENTIFIANT</label>
                     <div class="input-group rounded-3 border" style="background: rgba(0,0,0,0.2); border-color: var(--border) !important;">

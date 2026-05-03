@@ -30,6 +30,7 @@ $page = strtolower($_GET["p"] ?? $_GET["page"] ?? "accueil");
 $routes = [
     "accueil" => ["HomeController", "index"],
     "produits" => ["ProductController", "index"],
+    "detail" => ["ProductController", "detail"],
     "connexion" => ["AuthController", "index"],
     "admin" => ["AdminController", "index", "admin"],
     "connexion-exe" => ["AuthController", "login"],
@@ -46,12 +47,12 @@ try {
 
     if ($controllerInfo && $controllerInfo[2]) {
         if (!isset($_SESSION["user"])) {
-            header("location: /?p=connexion&error=notLoggedIn");
+            header("location: /?page=connexion&error=notLoggedIn");
             exit();
         }
 
         if (!isset($_SESSION["user"]["role"]) || $_SESSION["user"]["role"] !== "adm") {
-            header("location: /?p=accueil&error=authRequired");
+            header("location: /?page=accueil&error=authRequired");
             exit();
         }
     }

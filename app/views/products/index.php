@@ -1,3 +1,5 @@
+<?php /** @var string $pageTitle */?>
+
 <main class="container py-5">
 
     <?php if (isset($_GET['error']) && $_GET['error'] === 'authRequired'): ?>
@@ -26,7 +28,7 @@
             <div class="col-12 col-md-6 col-lg-4">
                 <article class="card product-card h-100 shadow-none">
                     <div class="p-4 text-center position-relative">
-                        <img src="/img/<?= $p["nomImage"] ?>" class="img-fluid img-product" style="height:200px;" alt="Image de <?= $p["nomProduit"] ?>">
+                        <img src="/img<?= $p["nomImage"] ?>" class="img-fluid img-product" style="height:200px;" alt="Image de <?= $p["nomProduit"] ?>">
                         <div class="position-absolute bottom-0 start-50 translate-middle-x mb-n2">
                             <span class="badge bg-black border border-secondary px-3 py-2 rounded-pill">
                                 <?= number_format($p["prixUnitaire"], 2, ',', ' ') ?> €

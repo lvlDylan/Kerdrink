@@ -31,9 +31,9 @@ class AuthController {
         if ($user && $password === $user["mdp"]) {
             unset($user["mdp"]);
             $_SESSION["user"] = $user;
-            header("location: /?p=accueil");
+            header("location: /?page=accueil");
         } else {
-            header("location: /?p=connexion&error=login");
+            header("location: /?page=connexion&error=login");
         }
         exit();
     }
@@ -42,7 +42,7 @@ class AuthController {
     public static function logout(): void {
         $_SESSION = array();
         session_destroy();
-        header("location: /?p=accueil");
+        header("location: /?page=accueil");
         exit();
     }
 }
