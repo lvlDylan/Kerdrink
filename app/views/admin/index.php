@@ -8,6 +8,7 @@
                     <th class="py-3 fw-normal">Login</th>
                     <th class="py-3 fw-normal">Nom</th>
                     <th class="py-3 fw-normal">Prénom</th>
+                    <th class="py-3 fw-normal">Rôle</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -16,6 +17,7 @@
                         <td class="py-4 fw-bold"> <?= $user["login"] ?></td>
                         <td class="py-4 text-uppercase"><?= $user["nom"] ?></td>
                         <td class="py-4"><?= $user["prenom"] ?></td>
+                        <td class="py-4"><?= $user["role"] ?></td>
                     </tr>
                 <?php endforeach; ?>
                 </tbody>
