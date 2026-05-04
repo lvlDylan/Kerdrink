@@ -11,7 +11,7 @@
         <div class="col-lg-5">
             <div class="mb-5">
                 <nav class="mb-4">
-                    <a href="/?page=produits" class="text-decoration-none small fw-bold" style="color: var(--acc)">
+                    <a href="/produits" class="text-decoration-none small fw-bold" style="color: var(--acc)">
                         <i class="bi bi-chevron-left"></i> CATALOGUES
                     </a>
                 </nav>
@@ -45,7 +45,7 @@
                     </div>
                 </div>
 
-                <form action="/?page=ajouter-panier-exe" method="POST">
+                <form action="/ajouter-panier-exe" method="POST">
                     <input type="hidden" name="id" value="<?= $product["numProduit"] ?>">
 
                     <div class="d-flex justify-content-between align-items-center mb-4 p-2 rounded-3 border"

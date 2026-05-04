@@ -1,14 +1,13 @@
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const alert = document.getElementById('error-alert');
-        if (alert) {
+    document.addEventListener('DOMContentLoaded', function() {
+        const flashElement = document.getElementById('flash-toast');
+
+        if (flashElement) {
             setTimeout(() => {
-                alert.classList.remove('show');
-                alert.classList.add('fade');
-                setTimeout(() => {
-                    alert.remove();
-                }, 150);
-            }, 3500);
+                const alert = new bootstrap.Alert(flashElement);
+                alert.close();
+            }, 5000);
         }
     });
 </script>

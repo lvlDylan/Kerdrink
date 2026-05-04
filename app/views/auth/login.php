@@ -8,22 +8,18 @@
 
         <section class="card product-card p-4 p-md-5 shadow-lg border-0">
 
-            <?php if (isset($_GET['error'])): ?>
-                <div class="d-flex align-items-center p-3 mb-4 rounded-3 border-start border-4 shadow-sm"
+            <?php if ($flash = Helper::getFlash()): ?>
+                <div class="alert alert-dismissible fade show d-flex align-items-center p-3 mb-4 rounded-3 border-start border-4 shadow-sm" id="flash-toast"
                      style="background: var(--acc-soft); border-color: var(--acc) !important;">
                     <i class="bi bi-exclamation-triangle-fill me-3" style="color: var(--acc);"></i>
                     <div style="color: var(--txt); font-size: 0.85rem; font-weight: 500;">
-                        <?php
-                        if($_GET['error'] == 'login') echo "Identifiants invalides. Vérifiez vos identifiants.";
-                        else if ($_GET['error'] == 'notLoggedIn') echo "Vous devez être connecté pour accéder à ce contenu.";
-                        else if ($_GET['error'] == 'needClientAccount') echo "Vous devez être authentifié avec un compte client.";
-                        else echo "Une erreur est survenue lors de votre connexion.";
-                        ?>
+                        <?= $flash["message"]; ?>
                     </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             <?php endif; ?>
 
-            <form action="/?page=connexion-exe" method="POST">
+            <form action="/connexion-exe" method="POST">
                 <div class="mb-4">
                     <label class="form-label small opacity-50 fw-bold" style="color: var(--txt); letter-spacing: 1px;">IDENTIFIANT</label>
                     <div class="input-group rounded-3 border" style="background: rgba(0,0,0,0.2); border-color: var(--border) !important;">
@@ -52,7 +48,7 @@
             </form>
 
             <footer class="mt-4 text-center">
-                <a href="/?page=inscription" class="small text-decoration-none opacity-75 hover-opacity-100" style="color: var(--txt);">
+                <a href="/inscription" class="small text-decoration-none opacity-75 hover-opacity-100" style="color: var(--txt);">
                     Pas encore de compte client ? <span style="color: var(--acc);">S'inscrire</span>
                 </a>
             </footer>

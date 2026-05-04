@@ -46,7 +46,7 @@
                         <small class="text-muted">Consultez vos achats passés</small>
                     </div>
                 </div>
-                <a href="/?page=historique" class="btn btn-light rounded-circle stretched-link"><i class="bi bi-chevron-right"></i></a>
+                <a href="/historique" class="btn btn-light rounded-circle stretched-link"><i class="bi bi-chevron-right"></i></a>
             </div>
         </div>
     </div>

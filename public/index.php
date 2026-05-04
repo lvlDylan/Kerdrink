@@ -19,18 +19,33 @@ spl_autoload_register(function ($className) {
             require_once $file;
         }
     }
+
 });
 
-require_once ROOT . "config/database.php";
+require_once ROOT . "app" . DIRECTORY_SEPARATOR . "Helper.php";
+require_once ROOT . "config" . DIRECTORY_SEPARATOR . "database.php";
 
 $db = Database::getInstance();
 
-$page = strtolower($_GET["p"] ?? $_GET["page"] ?? "accueil");
+$request = $_GET['p'] ?? parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$request = trim($request, '/');
+
+$parts = explode('/', $request);
+$page = !empty($parts[0]) ? strtolower($parts[0]) : "accueil";
+$_SESSION['current_page'] = $page;
+
+if ($page === 'produits' && isset($parts[1]) && $parts[1] === 'detail') {
+    $page = 'produits-detail';
+
+    if (isset($parts[2])) {
+        $_GET['id'] = $parts[2];
+    }
+}
 
 $routes = [
     "accueil" => ["HomeController", "index"],
     "produits" => ["ProductController", "index"],
-    "detail" => ["ProductController", "detail"],
+    "produits-detail" => ["ProductController", "detail"],
     "connexion" => ["AuthController", "index"],
     "inscription" => ["AuthController", "register"],
     "admin" => ["AdminController", "index", "admin"],
@@ -55,20 +70,23 @@ try {
 
     if ($controllerInfo && !empty($controllerInfo[2])) {
         if (!isset($_SESSION["user"])) {
-            header("location: /?page=connexion&error=notLoggedIn");
+            Helper::setFlash("error", "Vous devez être connecté pour accéder à ce contenu.");
+            header("location: /connexion");
             exit();
         }
 
         if ($controllerInfo[2] === "admin") {
             if (!isset($_SESSION["user"]["role"]) || $_SESSION["user"]["role"] !== "adm") {
-                header("location: /?page=accueil&error=authRequired");
+                Helper::setFlash("error", "Vous devez être authentifié pour accéder à ce contenu.");
+                header("location: /accueil");
                 exit();
             }
         }
 
         if ($controllerInfo[2] === "client") {
             if (!isset($_SESSION["user"]["idClient"])) {
-                header("location: /?page=connexion&error=needClientAccount");
+                Helper::setFlash("error", "Vous devez être connecté en tant que client pour accéder à ce contenu.");
+                header("location: /connexion");
                 exit();
             }
         }

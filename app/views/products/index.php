@@ -2,11 +2,11 @@
 
 <main class="container py-5">
 
-    <?php if (isset($_GET['error']) && $_GET['error'] === 'authRequired'): ?>
-        <div class="alert alert-danger border-0 shadow-sm mb-4 d-flex align-items-center" role="alert" id="error-alert">
+    <?php if ($flash = Helper::getFlash()): ?>
+        <div class="alert alert-dismissible alert-danger border-0 shadow-sm mb-4 d-flex align-items-center" role="alert" id="flash-toast">
             <i class="bi bi-exclamation-octagon-fill fs-4 me-3"></i>
             <div>
-                <strong>Accès refusé :</strong> Vous n'avez pas les droits nécessaires pour accéder à cette page.
+                <strong>Accès refusé :</strong> <?= $flash["message"] ?>
             </div>
         </div>
     <?php endif; ?>
@@ -38,7 +38,7 @@
                     <div class="card-body pt-4 text-center">
                         <h3 class="h5 fw-bold mb-3"><?= $p["nomProduit"] ?></h3>
                         <p class="small opacity-50 mb-4"><?= $p["descriptif"] ?></p>
-                        <a href="/?page=detail&id=<?= $p["numProduit"] ?>" class="btn-premium w-100 text-decorateion-none d-block stretched-link">
+                        <a href="/produits/detail/<?= $p["numProduit"] ?>" class="btn-premium w-100 text-decorateion-none d-block stretched-link">
                             DÉCOUVRIR <i class="bi bi-arrow-up-right ms-2"></i>
                         </a>
                     </div>

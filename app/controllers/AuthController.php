@@ -6,8 +6,6 @@ class AuthController {
 
     public function index(): void
     {
-        $error = $_GET['error'] ?? null;
-
         ob_start();
         require_once ROOT . "app/views/auth/login.php";
         $content = ob_get_clean();
@@ -17,8 +15,6 @@ class AuthController {
 
     public function register(): void
     {
-        $error = $_GET['error'] ?? null;
-
         ob_start();
         require_once ROOT . "app/views/auth/register.php";
         $content = ob_get_clean();
@@ -37,7 +33,8 @@ class AuthController {
         $telephone = !empty($_POST["telephone"]) ? $_POST["telephone"] : null;
 
         if (empty($lastName) || empty($firstName) || empty($pseudo) || empty($password)) {
-            header("location: /?page=inscription&error=empty");
+            Helper::setFlash("error", "Veuillez remplir les champs requis.");
+            header("location: /inscription");
             exit();
         }
 
@@ -47,15 +44,18 @@ class AuthController {
             if ($customer) {
                 unset($customer["mdp"]);
                 $_SESSION["user"] = $customer;
-                header("location: /?page=accueil");
+                header("location: /accueil");
+                exit();
             } else {
-                header("location: /?page=inscription&error=error");
+                Helper::setFlash("error", "Une erreur est survenue lors de la création de votre compte.");
+                header("location: /inscription");
+                exit();
             }
         } else {
-            header("location: /?page=inscription&error=invalid");
+            Helper::setFlash("error", "Ce courriel ou ce pseudonyme n'est pas disponible.");
+            header("location: /inscription");
+            exit();
         }
-
-        exit();
     }
 
     public function login(PDO $db): void {
@@ -73,9 +73,10 @@ class AuthController {
         if ($user && $password === $user["mdp"]) {
             unset($user["mdp"]);
             $_SESSION["user"] = $user;
-            header("location: /?page=accueil");
+            header("location: /accueil");
         } else {
-            header("location: /?page=connexion&error=login");
+            Helper::setFlash("error", "Vos identifiants sont invalides.");
+            header("location: /connexion");
         }
         exit();
     }
@@ -83,7 +84,7 @@ class AuthController {
     public function logout(): void {
         $_SESSION = array();
         session_destroy();
-        header("location: /?page=accueil");
+        header("location: /accueil");
         exit();
     }
 }

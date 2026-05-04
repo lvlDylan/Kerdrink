@@ -23,7 +23,7 @@
                             </div>
                             <div class="text-end">
                                 <p class="fw-bold mb-0"><?= number_format($st, 2) ?> €</p>
-                                <form action="?page=retirer-panier-exe" method="POST" onsubmit="return confirm('Supprimer cet article ?')">
+                                <form action="/retirer-panier-exe" method="POST" onsubmit="return confirm('Supprimer cet article ?')">
                                     <input type="hidden" name="id" value="<?= $item['numProduit'] ?>">
                                     <button type="submit" class="btn btn-link text-danger p-0 small text-decoration-none border-0 bg-transparent">
                                         <i class="bi bi-trash"></i> Supprimer

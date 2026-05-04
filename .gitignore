@@ -9,6 +9,7 @@ sessions/
 *~
 *.swp
 *.swo
+*.sh
 
 # Corbeille et miniatures
 .Trash-*

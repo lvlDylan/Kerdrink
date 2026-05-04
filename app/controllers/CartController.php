@@ -86,7 +86,7 @@ class CartController
 
         $orderId = $cartModel->getOrCreateCart($idClient);
         $cartModel->addProductToCart($orderId, $productId, $qty);
-        header("location: /?page=panier");
+        header("location: /panier");
         exit();
     }
 
@@ -97,7 +97,7 @@ class CartController
         $cartModel = new Cart($db);
         $orderId = $cartModel->getOrCreateCart($idClient);
         $cartModel->removeProductFromCart($orderId, $productId);
-        header("location: /?page=panier");
+        header("location: /panier");
         exit();
     }
     public function confirm(PDO $db): void
@@ -106,6 +106,8 @@ class CartController
         $cartModel = new Cart($db);
         $orderId = $cartModel->getOrCreateCart($idClient);
         $cartModel->confirmCart($orderId);
-        header("location: /?page=historique&message=orderSuccess");
+        Helper::setFlash("success", "Votre commande a été confirmée !");
+        header("location: /historique");
+        exit();
     }
 }

@@ -18,10 +18,10 @@
             </div>
 
             <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
-                <a href="/?page=accueil" class="btn-premium px-5 py-3 text-decoration-none">
+                <a href="/accueil" class="btn-premium px-5 py-3 text-decoration-none">
                     RETOUR À L'ACCUEIL <i class="bi bi-house-door ms-2"></i>
                 </a>
-                <a href="/?page=produits" class="btn btn-outline-secondary px-5 py-3 rounded-0 border-2 text-uppercase fw-bold">
+                <a href="/produits" class="btn btn-outline-secondary px-5 py-3 rounded-0 border-2 text-uppercase fw-bold">
                     NOS PRODUITS
                 </a>
             </div>

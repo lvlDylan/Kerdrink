@@ -1,15 +1,12 @@
 <?php /** @var array $orders */ ?>
 <main class="container py-5">
 
-    <?php if (isset($_GET['message'])): ?>
-        <div class="d-flex align-items-center p-3 mb-4 rounded-3 border-start border-4 shadow-sm"
+    <?php if ($flash = Helper::getFlash()): ?>
+        <div class="alert alert-dismissible fade show d-flex align-items-center p-3 mb-4 rounded-3 border-start border-4 shadow-sm" id="flash-toast"
              style="background-color: #e6f4ea; border-color: #198754 !important;">
             <i class="bi bi-check-circle-fill me-3" style="color: #198754;"></i>
             <div style="color: #0f5132; font-size: 0.85rem; font-weight: 500;">
-                <?php
-                if($_GET['message'] == 'orderSuccess') echo "Commande validée avec succès !";
-                else echo "Opération réussie.";
-                ?>
+                <?= $flash["message"] ?>
             </div>
         </div>
     <?php endif; ?>
@@ -20,7 +17,7 @@
         <div class="text-center py-5">
             <i class="bi bi-cart-x fs-1 text-muted"></i>
             <p class="mt-3 opacity-50">Vous n'avez pas encore passé de commande.</p>
-            <a href="/?page=produits" class="text-decoration-none small fw-bold" style="color: var(--acc)">Découvrir nos produits</a>
+            <a href="/produits" class="text-decoration-none small fw-bold" style="color: var(--acc)">Découvrir nos produits</a>
         </div>
     <?php else: ?>
 

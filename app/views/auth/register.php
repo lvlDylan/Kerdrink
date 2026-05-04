@@ -8,22 +8,17 @@
 
         <section class="card product-card p-4 p-md-5 shadow-lg border-0">
 
-            <?php if (isset($_GET['error'])): ?>
-                <div class="d-flex align-items-center p-3 mb-4 rounded-3 border-start border-4 shadow-sm"
+            <?php if ($flash = Helper::getFlash()) : ?>
+                <div class="alert alert-dismissible fade show d-flex align-items-center p-3 mb-4 rounded-3 border-start border-4 shadow-sm" id="flash-toast"
                      style="background: var(--acc-soft); border-color: var(--acc) !important;">
                     <i class="bi bi-exclamation-triangle-fill me-3" style="color: var(--acc);"></i>
                     <div style="color: var(--txt); font-size: 0.85rem; font-weight: 500;">
-                        <?php
-                        if($_GET['error'] == 'register') echo "Une erreur est survenue lors de la création de votre compte.";
-                        else if ($_GET['error'] == 'empty') echo "Les champs marqué d'un astérisque sont obligatoire.";
-                        else if ($_GET['error'] == 'invalid') echo "Ce nom d'utilisateur ou ce courriel n'est pas disponible.";
-                        else echo "Une erreur est survenue lors de l'accès à votre compte.";
-                        ?>
+                        <?= $flash["message"] ?>
                     </div>
                 </div>
             <?php endif; ?>
 
-            <form action="/?page=inscription-exe" method="POST">
+            <form action="/inscription-exe" method="POST">
 
                 <div class="mb-4">
                     <label class="form-label small opacity-50 fw-bold" style="color: var(--txt); letter-spacing: 1px;">NOM <span style="color: red">*</span></label>
@@ -97,7 +92,7 @@
             </form>
 
             <footer class="mt-4 text-center">
-                <a href="/?page=connexion" class="small text-decoration-none opacity-75 hover-opacity-100" style="color: var(--txt);">
+                <a href="/connexion" class="small text-decoration-none opacity-75 hover-opacity-100" style="color: var(--txt);">
                     Vous avez déjà un compte ? <span style="color: var(--acc);">Se connecter</span>
                 </a>
             </footer>
