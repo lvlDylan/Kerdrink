@@ -53,7 +53,7 @@ readonly class Customer
         $sqlExist = "SELECT pseudo FROM client WHERE pseudo = :pseudo OR mail = :mail;";
         $stmtExist = $this->db->prepare($sqlExist);
         $stmtExist->execute(['pseudo' => $pseudo, 'mail' => $email]);
-        if ($stmtExist->rowCount() > 0) {
+        if ($stmtExist->fetchColumn()) {
             return false;
         }
 
