@@ -11,7 +11,7 @@ readonly class Product
 
     public function getLatest(): array
     {
-        $sql = "SELECT * FROM produit ORDER BY numProduit DESC LIMIT 6";
+        $sql = "SELECT * FROM produit ORDER BY numProduit DESC LIMIT 3";
         return $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
 
