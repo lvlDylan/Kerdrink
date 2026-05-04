@@ -21,8 +21,8 @@ function isActive($pageName, $currentPage): string
             <?php if (!empty($_SESSION["user"]["role"]) && $_SESSION["user"]["role"] === "adm"): ?>
                 <a href="/?page=admin" class="<?= isActive('admin', $currentPage) ?>">Admin</a>
                 <?php if (strpos($_SERVER["SERVER_SOFTWARE"], "Apache") !== false): ?>
-                    <a href="10.29.161.95:12322" target="_blank">Adminer</a>
-                    <a href="10.29.161.95:12321" target="_blank">Webmin</a>
+                    <a href="http://10.29.161.95:12322" target="_blank">Adminer</a>
+                    <a href="http://10.29.161.95:12321" target="_blank">Webmin</a>
                 <?php endif; ?>    
             <?php endif; ?>
 
