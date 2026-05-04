@@ -33,8 +33,8 @@ class AuthController {
         $pseudo = $_POST["pseudo"] ?? null;
         $password = $_POST["password"] ?? null;
 
-        $email = $_POST["email"] ?? "";
-        $telephone = $_POST["telephone"] ?? "";
+        $email = !empty($_POST["email"]) ? $_POST["email"] : null;
+        $telephone = !empty($_POST["telephone"]) ? $_POST["telephone"] : null;
 
         if (empty($lastName) || empty($firstName) || empty($pseudo) || empty($password)) {
             header("location: /?page=inscription&error=empty");
@@ -43,7 +43,7 @@ class AuthController {
 
         $customerModel = new Customer($db);
         if ($customerModel->register($lastName, $firstName, $pseudo, $password, $email, $telephone)) {
-            $customer = $customerModel->getByEmailOrPseudo($pseudo);
+            $customer = $customerModel->getByPseudo($pseudo);
             if ($customer) {
                 unset($customer["mdp"]);
                 $_SESSION["user"] = $customer;
