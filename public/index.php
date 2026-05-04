@@ -68,7 +68,7 @@ try {
 
         if ($controllerInfo[2] === "client") {
             if (!isset($_SESSION["user"]["idClient"])) {
-                header("location: /?page=connexion&error=notLoggedIn");
+                header("location: /?page=connexion&error=needClientAccount");
                 exit();
             }
         }

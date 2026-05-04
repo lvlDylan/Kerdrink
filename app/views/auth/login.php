@@ -16,6 +16,7 @@
                         <?php
                         if($_GET['error'] == 'login') echo "Identifiants invalides. Vérifiez vos identifiants.";
                         else if ($_GET['error'] == 'notLoggedIn') echo "Vous devez être connecté pour accéder à ce contenu.";
+                        else if ($_GET['error'] == 'needClientAccount') echo "Vous devez être authentifié avec un compte client.";
                         else echo "Une erreur est survenue lors de votre connexion.";
                         ?>
                     </div>

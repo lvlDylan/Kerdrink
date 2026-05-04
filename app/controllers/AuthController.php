@@ -26,7 +26,6 @@ class AuthController {
         require_once ROOT . "app/views/layout.php";
     }
 
-    #[NoReturn]
     public function registerCustomer(PDO $db): void
     {
         $lastName = $_POST["lastName"] ?? null;
@@ -59,7 +58,6 @@ class AuthController {
         exit();
     }
 
-    #[NoReturn]
     public function login(PDO $db): void {
         $login = $_POST["login"] ?? "";
         $password = $_POST["password"] ?? "";
@@ -82,7 +80,6 @@ class AuthController {
         exit();
     }
 
-    #[NoReturn]
     public function logout(): void {
         $_SESSION = array();
         session_destroy();

@@ -76,7 +76,6 @@ class CartController
         require_once ROOT . "app/views/layout.php";
     }
 
-    #[NoReturn]
     public function add(PDO $db): void
     {
         $idClient = $_SESSION["user"]["idClient"];
@@ -91,7 +90,6 @@ class CartController
         exit();
     }
 
-    #[NoReturn]
     public function remove(PDO $db): void
     {
         $idClient = $_SESSION["user"]["idClient"];
@@ -102,7 +100,6 @@ class CartController
         header("location: /?page=panier");
         exit();
     }
-    #[NoReturn]
     public function confirm(PDO $db): void
     {
         $idClient = $_SESSION["user"]["idClient"];
