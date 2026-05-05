@@ -42,11 +42,19 @@ $parts = explode('/', $request);
 $page = !empty($parts[0]) ? strtolower($parts[0]) : "accueil";
 $_SESSION['current_page'] = $page;
 
-if ($page === 'produits' && isset($parts[1]) && $parts[1] === 'detail') {
+if ($page === 'produits' && isset($parts[1]) && $parts[1] === 'detail') { // /produits/detail/1
     $page = 'produits-detail';
 
     if (isset($parts[2])) {
         $_GET['id'] = $parts[2];
+    }
+}
+
+if ($page === 'admin' && isset($parts[1]) && $parts[1] === 'orders') { // /admin/orders/detail/1
+    $page = 'admin-orders';
+
+    if (isset($parts[3])) {
+        $_GET['id'] = $parts[3];
     }
 }
 
@@ -57,6 +65,8 @@ $routes = [
     "connexion" => ["AuthController", "index"],
     "inscription" => ["AuthController", "register"],
     "admin" => ["AdminController", "index", "admin"],
+    "admin-orders" => ["AdminController", "orderDetail", "admin"],
+    "admin-update-statut-exe" => ["AdminController", "updateStatut", "admin"],
     "profil" => ["CustomerController", "index", "client"],
     "historique" => ["CartController", "history", "client"],
     "panier" => ["CartController", "index", "client"],

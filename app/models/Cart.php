@@ -35,7 +35,8 @@ readonly class Cart
                 ON contenir.numProduit = produit.numProduit
                 LEFT JOIN statut
                 ON statut.idStatut = commande.idStatut
-                WHERE commande.idClient = :idClient AND statut.idStatut != 'PAN'";
+                WHERE commande.idClient = :idClient AND statut.idStatut != 'PAN'
+                ORDER BY commande.dateCommande DESC, commande.noCommande DESC";
         $stmt = $this->db->prepare($sql);
         $stmt->execute([":idClient" => $idClient]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);

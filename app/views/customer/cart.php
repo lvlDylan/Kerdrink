@@ -41,7 +41,7 @@
         </div>
 
         <div class="d-grid mt-4">
-            <a href="?page=valider-panier-exe" class="btn btn-lg text-white rounded-pill" style="background-color: var(--acc)">
+            <a href="/valider-panier-exe" class="btn btn-lg text-white rounded-pill" style="background-color: var(--acc)">
                 Confirmer la commande
             </a>
         </div>
