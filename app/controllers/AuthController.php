@@ -39,23 +39,25 @@ class AuthController {
         }
 
         $customerModel = new Customer($db);
-        if ($customerModel->register($lastName, $firstName, $pseudo, $password, $email, $telephone)) {
+
+        $salt = Helper::genSalt();
+        $hashedPassword = Helper::getHash($salt, $password);
+
+        if ($customerModel->register($lastName, $firstName, $pseudo, $hashedPassword, $salt, $email, $telephone)) {
             $customer = $customerModel->getByPseudo($pseudo);
             if ($customer) {
                 unset($customer["mdp"]);
                 $_SESSION["user"] = $customer;
                 header("location: /accueil");
-                exit();
             } else {
                 Helper::setFlash("error", "Une erreur est survenue lors de la création de votre compte.");
                 header("location: /inscription");
-                exit();
             }
         } else {
             Helper::setFlash("error", "Ce courriel ou ce pseudonyme n'est pas disponible.");
             header("location: /inscription");
-            exit();
         }
+        exit();
     }
 
     public function login(PDO $db): void {
@@ -70,14 +72,23 @@ class AuthController {
             $user = $clientModel->getByEmailOrPseudo($login);
         }
 
-        if ($user && $password === $user["mdp"]) {
-            unset($user["mdp"]);
-            $_SESSION["user"] = $user;
-            header("location: /accueil");
-        } else {
-            Helper::setFlash("error", "Vos identifiants sont invalides.");
-            header("location: /connexion");
+        if ($user) {
+            $db_password = $user["mdp_hash"];
+            $salt = $user["salt"];
+            if ($db_password && $salt) {
+                $hashed_password = Helper::getHash($user["salt"], $password);
+                if ($db_password === $hashed_password) {
+                    unset($user["mdp_hash"]);
+                    unset($user["salt"]);
+                    $_SESSION["user"] = $user;
+                    header("location: /accueil");
+                    exit();
+                }
+            }
         }
+
+        Helper::setFlash("error", "Vos identifiants sont invalides.");
+        header("location: /connexion");
         exit();
     }
 

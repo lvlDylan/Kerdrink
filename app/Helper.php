@@ -20,4 +20,22 @@ class Helper
             return null;
         }
     }
+
+    public static function genSalt(): string
+    {
+        try
+        {
+            $bytes = random_bytes(8);
+            return bin2hex($bytes);
+        } catch (\Random\RandomException $ex)
+        {
+            error_log($ex->getMessage());
+            return "";
+        }
+    }
+
+    public static function getHash(string $salt, string $password): string
+    {
+        return hash("sha256", $password . $salt);
+    }
 }

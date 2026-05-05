@@ -35,7 +35,7 @@ readonly class Customer
     {
         $sql = "SELECT * FROM client WHERE pseudo = :pseudo;";
         $stmt = $this->db->prepare($sql);
-        $stmt->execute(['mail' => $pseudo]);
+        $stmt->execute(['pseudo' => $pseudo]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
@@ -47,24 +47,32 @@ readonly class Customer
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function register(string $lastName, string $firstName, string $pseudo, string $password, ?string $email, ?string $telephone): bool
+    public function register(string $lastName, string $firstName, string $pseudo, string $hash, string $salt, ?string $email, ?string $telephone): bool
     {
-
-        $sqlExist = " SELECT pseudo FROM client WHERE pseudo = :pseudo OR (:mail IS NOT NULL AND mail = :mail)";
+        if ($email != null) {
+            $sqlExist = " SELECT pseudo FROM client WHERE pseudo = :pseudo OR mail = :mail";
+        } else {
+            $sqlExist = " SELECT pseudo FROM client WHERE pseudo = :pseudo";
+        }
         $stmtExist = $this->db->prepare($sqlExist);
         $stmtExist->bindValue(':pseudo', $pseudo);
-        $stmtExist->bindValue(':email', $email);
+
+        if ($email != null) {
+            $stmtExist->bindValue(':mail', $email);
+        }
+
         $stmtExist->execute();
         if ($stmtExist->fetchColumn()) {
             return false;
         }
 
-        $sql = "INSERT INTO client (nom, prenom, pseudo, mdp, mail, telephone) VALUES (:nom, :prenom, :pseudo, :mdp, :mail, :telephone)";
+        $sql = "INSERT INTO client (nom, prenom, pseudo, mdp_hash, salt, mail, telephone) VALUES (:nom, :prenom, :pseudo, :mdp_hash, :salt, :mail, :telephone)";
         $stmt = $this->db->prepare($sql);
         $stmt->bindValue(':nom', $lastName);
         $stmt->bindValue(':prenom', $firstName);
         $stmt->bindValue(':pseudo', $pseudo);
-        $stmt->bindValue(':mdp', $password);
+        $stmt->bindValue(':mdp_hash', $hash);
+        $stmt->bindValue(':salt', $salt);
         $stmt->bindValue(':mail', $email, $email === null ? PDO::PARAM_NULL : PDO::PARAM_STR);
         $stmt->bindValue(':telephone', $telephone, $telephone === null ? PDO::PARAM_NULL : PDO::PARAM_STR);
         $stmt->execute();
