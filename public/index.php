@@ -5,7 +5,15 @@ if (str_starts_with($_SERVER['SERVER_SOFTWARE'] ?? '', 'PHP')) {
     session_save_path(ROOT . "/tmp/");
 }
 
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+if (isset($_POST['age_verify'])) {
+    $_SESSION['is_major'] = true;
+}
+
+define('IS_MAJOR', $_SESSION['is_major'] ?? false);
 
 spl_autoload_register(function ($className) {
     $dirs = [

@@ -4,7 +4,7 @@
 <?php require_once ROOT . "app/views/partials/head.php"; ?>
 
 <body>
-
+<?php require_once ROOT . "app/views/partials/age-gate.php"; ?>
 <?php require_once ROOT . "app/views/partials/navbar.php"; ?>
 
 <?php /** @var string $content */ ?>
