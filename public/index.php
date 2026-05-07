@@ -60,6 +60,7 @@ if ($page === 'admin' && isset($parts[1]) && $parts[1] === 'orders') { // /admin
 
 $routes = [
     "accueil" => ["HomeController", "index"],
+    "legal" => ["GeneralController", "legal"],
     "produits" => ["ProductController", "index"],
     "produits-detail" => ["ProductController", "detail"],
     "connexion" => ["AuthController", "index"],

@@ -4,7 +4,7 @@
             L'abus d'alcool est dangereux pour la santé, à consommer avec modération.
         </p>
         <p class="mt-2 mb-0 small opacity-25">
-            &copy; <?= date('Y') ?> KerDrink - Kozh Spirit. Tous droits réservés.
+            &copy; <?= date('Y') ?> KerDrink - Kozh Spirit. Tous droits réservés. <a href="/legal">Mentions légales</a>
         </p>
     </div>
 </footer>
