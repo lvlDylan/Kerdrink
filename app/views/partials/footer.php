@@ -1,10 +1,10 @@
 <footer class="container-fluid py-4 mt-5 border-top">
     <div class="text-center">
         <p class="small text-uppercase opacity-50 mb-0" style="letter-spacing: 0.15em; font-size: 0.7rem;">
-            L'abus d'alcool est dangereux pour la santé, à consommer avec modération.
+            L'abus d'alcool est dangereux pour la santé, à consommer avec modération.  <a href="/legal">Mentions légales</a>
         </p>
         <p class="mt-2 mb-0 small opacity-25">
-            &copy; <?= date('Y') ?> KerDrink - Kozh Spirit. Tous droits réservés. <a href="/legal">Mentions légales</a>
+            &copy; <?= date('Y') ?> KerDrink - Kozh Spirit. Tous droits réservés.
         </p>
     </div>
 </footer>
