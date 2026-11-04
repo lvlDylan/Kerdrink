@@ -1,5 +1,14 @@
 <?php /** @var array $customer  */ ?>
 <main class="container py-5">
+    <?php if ($flash = Helper::getFlash()): ?>
+        <div class="alert alert-dismissible fade show d-flex align-items-center p-3 mb-4 rounded-3 border-start border-4 shadow-sm" id="flash-toast"
+             style="background-color: #e6f4ea; border-color: #198754 !important;">
+            <i class="bi bi-check-circle-fill me-3" style="color: #198754;"></i>
+            <div style="color: #0f5132; font-size: 0.85rem; font-weight: 500;">
+                <?= $flash["message"] ?>
+            </div>
+        </div>
+    <?php endif; ?>
     <div class="row justify-content-center">
         <div class="col-lg-8">
             <div class="card border-0 shadow-sm overflow-hidden" style="border-radius: 20px; background: #f8f9fa;">
@@ -60,7 +69,7 @@
                     </div>
                 </div>
                 <div class="d-flex flex-wrap gap-2 pt-2 border-top">
-                    <a href="/donnees/exporter" class="btn btn-outline-secondary btn-sm rounded-pill px-3 d-inline-flex align-items-center gap-2">
+                    <a href="/exporter-donnees" class="btn btn-outline-secondary btn-sm rounded-pill px-3 d-inline-flex align-items-center gap-2">
                         <i class="bi bi-download"></i> Télécharger mes données
                     </a>
                     <form action="/donnees/supprimer" method="POST" class="d-inline" onsubmit="return confirm('Êtes-vous sûr de vouloir demander la suppression de vos données et de votre compte ? Cette action est irréversible.');">
