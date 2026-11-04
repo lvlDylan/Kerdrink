@@ -40,10 +40,8 @@ class AuthController {
 
         $customerModel = new Customer($db);
 
-        $salt = Helper::genSalt();
-        $hashedPassword = Helper::getHash($salt, $password);
 
-        if ($customerModel->register($lastName, $firstName, $pseudo, $hashedPassword, $salt, $email, $telephone)) {
+        if ($customerModel->register($lastName, $firstName, $pseudo, $email, $telephone)) {
             $customer = $customerModel->getByPseudo($pseudo);
             if ($customer) {
                 unset($customer["mdp"]);
@@ -73,13 +71,9 @@ class AuthController {
         }
 
         if ($user) {
-            $db_password = $user["mdp_hash"];
-            $salt = $user["salt"];
-            if ($db_password && $salt) {
-                $hashed_password = Helper::getHash($user["salt"], $password);
-                if ($db_password === $hashed_password) {
-                    unset($user["mdp_hash"]);
-                    unset($user["salt"]);
+            $db_password = $user["mdp"];
+            if ($db_password) {
+                if ($db_password === $password) {
                     $_SESSION["user"] = $user;
                     header("location: /accueil");
                     exit();

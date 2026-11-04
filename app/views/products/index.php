@@ -6,7 +6,7 @@
         <div class="alert alert-dismissible alert-danger border-0 shadow-sm mb-4 d-flex align-items-center" role="alert" id="flash-toast">
             <i class="bi bi-exclamation-octagon-fill fs-4 me-3"></i>
             <div>
-                <strong>Accès refusé :</strong> <?= $flash["message"] ?>
+                <?= $flash["message"] ?>
             </div>
         </div>
     <?php endif; ?>
