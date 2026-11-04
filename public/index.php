@@ -2,6 +2,10 @@
 define("ROOT", dirname(__DIR__) . DIRECTORY_SEPARATOR);
 
 require_once ROOT . 'vendor/autoload.php';
+use Dotenv\Dotenv;
+
+$dotenv = Dotenv::createImmutable(ROOT);
+$dotenv->load();
 
 if (str_starts_with($_SERVER['SERVER_SOFTWARE'] ?? '', 'PHP')) {
     session_save_path(ROOT . "/tmp/");
