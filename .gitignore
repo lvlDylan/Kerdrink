@@ -3,6 +3,7 @@
 tmp/
 temp/
 sessions/
+vendor
 
 # --- Système d'exploitation ---
 # Linux
@@ -27,3 +28,6 @@ Desktop.ini
 
 # --- Bootstrap --- 
 public/css/*.min.css
+
+# --- Environment ---
+.env
