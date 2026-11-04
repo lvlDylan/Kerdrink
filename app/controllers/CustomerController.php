@@ -28,4 +28,15 @@ class CustomerController
         $content = ob_get_clean();
         require_once ROOT . "app/views/layout.php";
     }
+
+    public function delete(PDO $db): void
+    {
+        //$customerModel = new Customer($db);
+        // $customerModel->delete($_SESSION["user"]["idClient"]); -- FAKE DELETE
+
+        $_SESSION = array();
+        Helper::setFlash("success", "Votre compte a été supprimé.");
+        header("location: /accueil");
+        exit();
+    }
 }

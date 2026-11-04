@@ -72,7 +72,7 @@
                     <a href="/exporter-donnees" class="btn btn-outline-secondary btn-sm rounded-pill px-3 d-inline-flex align-items-center gap-2">
                         <i class="bi bi-download"></i> Télécharger mes données
                     </a>
-                    <form action="/donnees/supprimer" method="POST" class="d-inline" onsubmit="return confirm('Êtes-vous sûr de vouloir demander la suppression de vos données et de votre compte ? Cette action est irréversible.');">
+                    <form action="/supprimer-compte" method="POST" class="d-inline" onsubmit="return confirm('Êtes-vous sûr de vouloir demander la suppression de vos données et de votre compte ? Cette action est irréversible.');">
                         <button type="submit" class="btn btn-outline-danger btn-sm rounded-pill px-3 d-inline-flex align-items-center gap-2">
                             <i class="bi bi-trash"></i> Supprimer mon compte
                         </button>

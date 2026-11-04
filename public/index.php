@@ -70,6 +70,7 @@ $routes = [
     "admin-update-statut-exe" => ["AdminController", "updateStatut", "admin"],
     "profil" => ["CustomerController", "index", "client"],
     "exporter-donnees" => ["CustomerController", "export", "client"],
+    "supprimer-compte" => ["CustomerController", "delete", "client"],
     "historique" => ["CartController", "history", "client"],
     "panier" => ["CartController", "index", "client"],
     "ajouter-panier-exe" => ["CartController", "add", "client"],
