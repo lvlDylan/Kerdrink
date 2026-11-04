@@ -48,6 +48,28 @@
                 </div>
                 <a href="/historique" class="btn btn-light rounded-circle stretched-link"><i class="bi bi-chevron-right"></i></a>
             </div>
+
+            <div class="mt-4 p-4 border rounded-4 bg-white shadow-sm">
+                <div class="d-flex align-items-center gap-3 mb-3">
+                    <div class="p-3 rounded-3 bg-light">
+                        <i class="bi bi-shield-lock fs-4" style="color: var(--acc)"></i>
+                    </div>
+                    <div>
+                        <h6 class="mb-0 fw-bold">Données personnelles & Confidentialité</h6>
+                        <small class="text-muted">Gérez vos droits RGPD (accès, exportation et suppression)</small>
+                    </div>
+                </div>
+                <div class="d-flex flex-wrap gap-2 pt-2 border-top">
+                    <a href="/donnees/exporter" class="btn btn-outline-secondary btn-sm rounded-pill px-3 d-inline-flex align-items-center gap-2">
+                        <i class="bi bi-download"></i> Télécharger mes données
+                    </a>
+                    <form action="/donnees/supprimer" method="POST" class="d-inline" onsubmit="return confirm('Êtes-vous sûr de vouloir demander la suppression de vos données et de votre compte ? Cette action est irréversible.');">
+                        <button type="submit" class="btn btn-outline-danger btn-sm rounded-pill px-3 d-inline-flex align-items-center gap-2">
+                            <i class="bi bi-trash"></i> Supprimer mon compte
+                        </button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </main>
