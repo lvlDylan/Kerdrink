@@ -47,6 +47,14 @@ readonly class Customer
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function getAddresses(string $customerId): array | false
+    {
+        $sql = "SELECT adresse.rue, adresse.codePostal, adresse.ville FROM adresse JOIN habiter ON adresse.idAdresse = habiter.idAdresse WHERE habiter.idClient = :idClient";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute(['idClient' => $customerId]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function register(string $lastName, string $firstName, string $pseudo, ?string $email, ?string $telephone): bool
     {
         if ($email != null) {

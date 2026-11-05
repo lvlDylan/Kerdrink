@@ -2,7 +2,7 @@
 
 class Helper
 {
-    public static function setFlash($type, $message): void
+    public static function setFlash(string $type, string $message): void
     {
         $_SESSION["flash"] = [
             "type" => $type,
