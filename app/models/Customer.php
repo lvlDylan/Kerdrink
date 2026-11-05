@@ -76,12 +76,12 @@ readonly class Customer
 
         $sql = "INSERT INTO client (nom, prenom, pseudo, pass_hash, mail, telephone) VALUES (:nom, :prenom, :pseudo, :pass_hash, :mail, :telephone)";
         $stmt = $this->db->prepare($sql);
-        $stmt->bindValue(':nom', $lastName);
-        $stmt->bindValue(':prenom', $firstName);
-        $stmt->bindValue(':pseudo', $pseudo);
+        $stmt->bindValue(':nom', Helper::cipher_text($lastName));
+        $stmt->bindValue(':prenom', Helper::cipher_text($firstName));
+        $stmt->bindValue(':pseudo', Helper::cipher_text($pseudo));
         $stmt->bindValue(':pass_hash', Helper::hash_password($password));
-        $stmt->bindValue(':mail', $email, $email === null ? PDO::PARAM_NULL : PDO::PARAM_STR);
-        $stmt->bindValue(':telephone', $telephone, $telephone === null ? PDO::PARAM_NULL : PDO::PARAM_STR);
+        $stmt->bindValue(':mail', Helper::cipher_text($email), $email === null ? PDO::PARAM_NULL : PDO::PARAM_STR);
+        $stmt->bindValue(':telephone', Helper::cipher_text($telephone), $telephone === null ? PDO::PARAM_NULL : PDO::PARAM_STR);
         $stmt->execute();
         return true;
     }

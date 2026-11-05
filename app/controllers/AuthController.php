@@ -43,7 +43,7 @@ class AuthController
 
 
         if ($customerModel->register($lastName, $firstName, $pseudo, $password, $email, $telephone)) {
-            $customer = $customerModel->getByPseudo($pseudo);
+            $customer = $customerModel->getByPseudo(Helper::cipher_text($pseudo));
             if ($customer) {
                 unset($customer["pass_hash"]);
                 $_SESSION["user"] = $customer;
