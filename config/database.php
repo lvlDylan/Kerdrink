@@ -1,17 +1,22 @@
 <?php
 class Database
 {
+    /**
+     * Ces fonctions permettent de pas pouvoir instancier ou cloner la classe, elle se doit d'être statique (singleton).
+     */
     private function __construct() {}
     private function __clone() {}
 
-    private const DB_HOST = "localhost";
-    private const DB_USER = "dylan";
-    private const DB_PASSWORD = "root";
-    private const DB_NAME = "kerdrink";
-
+    /**
+     * @var ?PDO $instance - Instance d'un PDO
+     */
     private static PDO | null $instance = null;
 
-    public static function getInstance()
+    /**
+     * @author Dylan
+     * @return ?PDO L'instance active de la connexion PDO
+     */
+    public static function getInstance(): ?PDO
     {
         if (self::$instance == null) {
             try {
