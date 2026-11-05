@@ -55,7 +55,7 @@ readonly class Customer
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function register(string $lastName, string $firstName, string $pseudo, ?string $email, ?string $telephone): bool
+    public function register(string $lastName, string $firstName, string $pseudo, string $password, ?string $email, ?string $telephone): bool
     {
         if ($email != null) {
             $sqlExist = " SELECT pseudo FROM client WHERE pseudo = :pseudo OR mail = :mail";
@@ -74,11 +74,12 @@ readonly class Customer
             return false;
         }
 
-        $sql = "INSERT INTO client (nom, prenom, pseudo, mdp_hash, salt, mail, telephone) VALUES (:nom, :prenom, :pseudo, :mail, :telephone)";
+        $sql = "INSERT INTO client (nom, prenom, pseudo, pass_hash, mail, telephone) VALUES (:nom, :prenom, :pseudo, :pass_hash, :mail, :telephone)";
         $stmt = $this->db->prepare($sql);
         $stmt->bindValue(':nom', $lastName);
         $stmt->bindValue(':prenom', $firstName);
         $stmt->bindValue(':pseudo', $pseudo);
+        $stmt->bindValue(':pass_hash', Helper::hash_password($password));
         $stmt->bindValue(':mail', $email, $email === null ? PDO::PARAM_NULL : PDO::PARAM_STR);
         $stmt->bindValue(':telephone', $telephone, $telephone === null ? PDO::PARAM_NULL : PDO::PARAM_STR);
         $stmt->execute();

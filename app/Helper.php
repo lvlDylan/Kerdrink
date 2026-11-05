@@ -21,21 +21,8 @@ class Helper
         }
     }
 
-    public static function genSalt(): string
+    public static function hash_password(string $password): string
     {
-        try
-        {
-            $bytes = random_bytes(8);
-            return bin2hex($bytes);
-        } catch (\Random\RandomException $ex)
-        {
-            error_log($ex->getMessage());
-            return "";
-        }
-    }
-
-    public static function getHash(string $salt, string $password): string
-    {
-        return hash("sha256", $password . $salt);
+        return password_hash($password, PASSWORD_ARGON2ID);
     }
 }

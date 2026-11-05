@@ -2,7 +2,8 @@
 
 use JetBrains\PhpStorm\NoReturn;
 
-class AuthController {
+class AuthController
+{
 
     public function index(): void
     {
@@ -41,10 +42,10 @@ class AuthController {
         $customerModel = new Customer($db);
 
 
-        if ($customerModel->register($lastName, $firstName, $pseudo, $email, $telephone)) {
+        if ($customerModel->register($lastName, $firstName, $pseudo, $password, $email, $telephone)) {
             $customer = $customerModel->getByPseudo($pseudo);
             if ($customer) {
-                unset($customer["mdp"]);
+                unset($customer["pass_hash"]);
                 $_SESSION["user"] = $customer;
                 header("location: /accueil");
             } else {
@@ -58,7 +59,8 @@ class AuthController {
         exit();
     }
 
-    public function login(PDO $db): void {
+    public function login(PDO $db): void
+    {
         $login = $_POST["login"] ?? "";
         $password = $_POST["password"] ?? "";
 
@@ -71,13 +73,10 @@ class AuthController {
         }
 
         if ($user) {
-            $db_password = $user["mdp"];
-            if ($db_password) {
-                if ($db_password === $password) {
-                    $_SESSION["user"] = $user;
-                    header("location: /accueil");
-                    exit();
-                }
+            if (password_verify($password, $user["pass_hash"])) {
+                $_SESSION["user"] = $user;
+                header("location: /accueil");
+                exit();
             }
         }
 
@@ -86,7 +85,8 @@ class AuthController {
         exit();
     }
 
-    public function logout(): void {
+    public function logout(): void
+    {
         $_SESSION = array();
         session_destroy();
         header("location: /accueil");
