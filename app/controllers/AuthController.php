@@ -125,7 +125,7 @@ class AuthController
 
         if ($user) {
             if (password_verify($password, $user["pass_hash"])) {
-                $_SESSION["user"] = $user;
+                $_SESSION["user"] = Helper::uncipher_user($user);
                 header("location: /accueil");
                 exit();
             }
