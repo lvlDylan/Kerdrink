@@ -37,7 +37,7 @@ class AuthController
     * @param null|string $telephone Numéro de téléphone français (10 chiffres).
     *
     * @return ?string Message de l'erreur
- */
+    */
     private function validateInformations(string $lastName, string $firstName, string $pseudo, string $password, ?string $email, ?string $telephone): ?string
     {
         if (strlen($lastName) > 32) {
@@ -94,7 +94,7 @@ class AuthController
 
 
         if ($customerModel->register($lastName, $firstName, $pseudo, $password, $email, $telephone)) {
-            $customer = $customerModel->getByPseudo(Helper::cipher_text($pseudo));
+            $customer = $customerModel->getByPseudo($pseudo);
             if ($customer) {
                 unset($customer["pass_hash"]);
                 $_SESSION["user"] = $customer;
