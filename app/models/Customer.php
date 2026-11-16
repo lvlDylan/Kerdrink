@@ -55,6 +55,23 @@ readonly class Customer
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    /**
+     * Enregistre un nouveau client dans la base de données.
+     *
+     * Vérifie au préalable que le pseudo et, si elle est renseignée, l'adresse
+     * e-mail ne sont pas déjà utilisés. Les informations personnelles sont
+     * chiffrées avant leur insertion et le mot de passe est haché.
+     *
+     * @param string      $lastName  Nom du client.
+     * @param string      $firstName Prénom du client.
+     * @param string      $pseudo    Pseudonyme du client.
+     * @param string      $password  Mot de passe du client (sera haché).
+     * @param string|null $email     Adresse e-mail du client (facultative).
+     * @param string|null $telephone Numéro de téléphone du client (facultatif).
+     *
+     * @return bool Retourne true si le client a été enregistré,
+     *              false si le pseudo ou l'adresse e-mail existe déjà.
+     */
     public function register(string $lastName, string $firstName, string $pseudo, string $password, ?string $email, ?string $telephone): bool
     {
         if ($email != null) {
@@ -78,9 +95,9 @@ readonly class Customer
         $stmt = $this->db->prepare($sql);
         $stmt->bindValue(':nom', Helper::cipher_text($lastName));
         $stmt->bindValue(':prenom', Helper::cipher_text($firstName));
-        $stmt->bindValue(':pseudo', Helper::cipher_text($pseudo));
+        $stmt->bindValue(':pseudo', $pseudo);
         $stmt->bindValue(':pass_hash', Helper::hash_password($password));
-        $stmt->bindValue(':mail', Helper::cipher_text($email), $email === null ? PDO::PARAM_NULL : PDO::PARAM_STR);
+        $stmt->bindValue(':mail', $email, $email === null ? PDO::PARAM_NULL : PDO::PARAM_STR);
         $stmt->bindValue(':telephone', Helper::cipher_text($telephone), $telephone === null ? PDO::PARAM_NULL : PDO::PARAM_STR);
         $stmt->execute();
         return true;
