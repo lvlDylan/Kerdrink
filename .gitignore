@@ -31,3 +31,4 @@ public/css/*.min.css
 
 # --- Environment ---
 .env
+php.ini
