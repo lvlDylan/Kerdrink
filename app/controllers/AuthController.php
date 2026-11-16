@@ -36,9 +36,9 @@ class AuthController
     * @param null|string $email Adresse email de l'utilisateur.
     * @param null|string $telephone Numéro de téléphone français (10 chiffres).
     *
-    * @return string Message de l'erreur
+    * @return ?string Message de l'erreur
  */
-    private function validateInformations(string $lastName, string $firstName, string $pseudo, string $password, ?string $email, ?string $telephone): string
+    private function validateInformations(string $lastName, string $firstName, string $pseudo, string $password, ?string $email, ?string $telephone): ?string
     {
         if (strlen($lastName) > 32) {
             return "Le nom ne peut pas dépasser 32 caractères.";
@@ -63,7 +63,7 @@ class AuthController
         if ($telephone != null && !preg_match($regex, $telephone))
             return "Le telephone est invalide.";
 
-        return "";
+        return null;
     }
 
     public function registerCustomer(PDO $db): void
@@ -84,7 +84,7 @@ class AuthController
 
         $errorMessage = $this->validateInformations($lastName, $firstName, $pseudo, $password, $email, $telephone);
 
-        if (strlen($errorMessage) > 0) {
+        if ($errorMessage) {
             Helper::setFlash("error", $errorMessage);
             header("location: /inscription");
             exit;
