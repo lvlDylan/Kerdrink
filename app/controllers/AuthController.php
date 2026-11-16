@@ -24,20 +24,20 @@ class AuthController
     }
 
     /**
-    * Vérifie que toutes les informations saisies par l'utilisateur sont valides.
-    *
-    * Vérifie la longueur du nom, du prénom, du pseudo et du mot de passe,
-    * ainsi que le format de l'adresse email et du numéro de téléphone.
-    *
-    * @param string $lastName Nom de l'utilisateur (32 caractères maximum).
-    * @param string $firstName Prénom de l'utilisateur (32 caractères maximum).
-    * @param string $pseudo Pseudo de l'utilisateur (entre 4 et 32 caractères).
-    * @param string $password Mot de passe de l'utilisateur (8 caractères minimum).
-    * @param null|string $email Adresse email de l'utilisateur.
-    * @param null|string $telephone Numéro de téléphone français (10 chiffres).
-    *
-    * @return ?string Message de l'erreur
-    */
+     * Vérifie que toutes les informations saisies par l'utilisateur sont valides.
+     *
+     * Vérifie la longueur du nom, du prénom, du pseudo et du mot de passe,
+     * ainsi que le format de l'adresse email et du numéro de téléphone.
+     *
+     * @param string $lastName Nom de l'utilisateur (32 caractères maximum).
+     * @param string $firstName Prénom de l'utilisateur (32 caractères maximum).
+     * @param string $pseudo Pseudo de l'utilisateur (entre 4 et 32 caractères).
+     * @param string $password Mot de passe de l'utilisateur (8 caractères minimum).
+     * @param null|string $email Adresse email de l'utilisateur.
+     * @param null|string $telephone Numéro de téléphone français (10 chiffres).
+     *
+     * @return ?string Message de l'erreur
+     */
     private function validateInformations(string $lastName, string $firstName, string $pseudo, string $password, ?string $email, ?string $telephone): ?string
     {
         if (strlen($lastName) > 32) {
@@ -47,7 +47,7 @@ class AuthController
         if (strlen($firstName) > 32) {
             return "Le prénom ne peut pas dépasser 32 caractères.";
         }
-        
+
         if (strlen($pseudo) < 4 || strlen($pseudo) > 32) {
             return "Le pseudo ne peut être plus petit que 4 caractères ou ne pas dépasser 32 caractères.";
         }
@@ -114,6 +114,19 @@ class AuthController
     {
         $login = $_POST["login"] ?? "";
         $password = $_POST["password"] ?? "";
+
+        if (strlen($login) < 4 || strlen($login) > 32) {
+            Helper::setFlash("error", "Votre identifiant doit être faire au moins 4 caractères et au plus 32.");
+            header("location: /connexion");
+            exit();
+        }
+
+        if (strlen($password) < 12 || strlen($password) > 32) {
+            Helper::setFlash("error", "Mot de passe de taille invalide.");
+            header("location: /connexion");
+            exit();
+        }
+
 
         $userModel = new User($db);
         $user = $userModel->getByLogin($login);
