@@ -131,6 +131,7 @@ class AuthController
             }
         }
 
+        Logger::log(LogLevel::WARN, "AuthController.php(login)", $_SERVER["REMOTE_ADDR"] . " a essayé de se connecter avec (" . $login . ").");
         Helper::setFlash("error", "Vos identifiants sont invalides.");
         header("location: /connexion");
         exit();

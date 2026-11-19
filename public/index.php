@@ -1,6 +1,8 @@
 <?php
 define("ROOT", dirname(__DIR__) . DIRECTORY_SEPARATOR);
 
+require_once ROOT . 'config/Logger.php';
+
 require_once ROOT . 'vendor/autoload.php';
 use Dotenv\Dotenv;
 
@@ -136,7 +138,7 @@ try {
 } catch (Exception $e) {
     $code = ($e->getCode() === 404) ? 404 : 500;
     http_response_code($code);
-    error_log("Erreur lors du routage : " . $e);
+    Logger::log(LogLevel::ERROR, "index.php(routage)", "Erreur lors du routage : " . $e);
 
     $pageTitle = "KerDrink - Erreur " . $code;
 

@@ -29,7 +29,7 @@ class Database
 
                 self::$instance = new PDO($dsn, $_ENV["DB_USER"], $_ENV["DB_PASSWORD"], $options);
             } catch (PDOException $e) {
-                error_log($e);
+                Logger::log(LogLevel::FATAL,  "database.php(getInstance())", "La connexion à la base de donnée à échoué. | " . $e->getMessage());
                 die("Erreur lors de l'instanciation de la base de données.");
             }
         }
