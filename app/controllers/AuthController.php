@@ -59,7 +59,7 @@ class AuthController
         if ($email != false && filter_var($email, FILTER_VALIDATE_EMAIL) == false)
             return "L'email est invalide.";
 
-        $regex = '/^0[1-9](?:[0-9]{8})$/';
+        $regex = '^0[1-9](?:\s*[0-9]{2}){4}$/gm';
         if ($telephone != null && !preg_match($regex, $telephone))
             return "Le telephone est invalide.";
 
