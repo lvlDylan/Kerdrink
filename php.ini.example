@@ -1,0 +1,30 @@
+# Indique si les messages d'erreur générés par les scripts devraient être journalisés dans le journal d'erreurs du serveur ou
+# dans error_log. Cette fonction est spécifique aux serveurs
+log_errors = 
+
+#Nom du fichier où seront enregistrées les erreurs. Le fichier doit être accessible en écriture par l'utilisateur 
+#exécutant le serveur web. Si la valeur spéciale syslog est utilisée, les erreurs seront envoyées au système d'historique du serveur.
+#Sous Unix, cela correspond à syslog(3) et sous Windows à l'historique d'événement. Voir aussi : syslog(). 
+#Si cette directive n'est pas fixée, les erreurs sont envoyées au journal d'erreurs SAPI. 
+#Par exemple, s'il s'agit d'une erreur de journal dans Apache ou stderr dans CLI.
+error_log = 
+
+#Cette directive détermine si les erreurs doivent être affichées à l'écran dans la sortie, 
+#ou si elles doivent être cachées à l'utilisateur.
+display_errors = "on" # Tant qu'on est en développement sinon ---> off
+
+#Même si display_errors est activé, des erreurs peuvent survenir lors de la séquence de démarrage de PHP, et ces erreurs sont cachées.
+display_startup_errors = 
+
+#Fixe le niveau d'erreur. 
+error_reporting = 
+
+#Ne pas enregistrer des messages répétitifs. SAUF SI ignore_repeated_source soit défini à true.
+ignore_repeated_errors = 
+
+#Ignore la source du message lors des messages répétés. 
+#Lorsqu'on a configuré cette option à On, ne seront pas enregistrées les erreurs répétées provenant de fichiers et lignes de code différents.
+ignore_repeated_source = 
+
+#Configure la taille maximale des erreurs qui seront enregistrées dans l'historique, en octets.
+log_errors_max_len = 
