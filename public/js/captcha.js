@@ -62,7 +62,10 @@ function drawCaptcha(ctx) {
 
 drawCaptcha(ctx);
 
-refreshBtn.addEventListener('click', () => drawCaptcha(ctx));
+refreshBtn.addEventListener('click', () => {
+    drawCaptcha(ctx);
+    userInput.value = "";
+});
 validateBtn.addEventListener('click', () => {
     if (currentCaptcha === userInput.value) {
         document.getElementById('registerBtn').disabled = false;
