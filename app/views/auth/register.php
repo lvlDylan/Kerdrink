@@ -10,7 +10,7 @@
 
             <?php if ($flash = Helper::getFlash()) : ?>
                 <div class="alert alert-dismissible fade show d-flex align-items-center p-3 mb-4 rounded-3 border-start border-4 shadow-sm" id="flash-toast"
-                     style="background: var(--acc-soft); border-color: var(--acc) !important;">
+                    style="background: var(--acc-soft); border-color: var(--acc) !important;">
                     <i class="bi bi-exclamation-triangle-fill me-3" style="color: var(--acc);"></i>
                     <div style="color: var(--txt); font-size: 0.85rem; font-weight: 500;">
                         <?= $flash["message"] ?>
@@ -26,7 +26,7 @@
                         <span class="input-group-text bg-transparent border-0"><i class="bi bi-file-earmark-person" style="color: var(--acc) !important;"></i></span>
                         <label>
                             <input type="text" name="lastName" class="form-control bg-transparent border-0 text-white"
-                                   placeholder="Dupont" required style="color: var(--txt) !important;">
+                                placeholder="Dupont" required style="color: var(--txt) !important;">
                         </label>
                     </div>
                 </div>
@@ -37,7 +37,7 @@
                         <span class="input-group-text bg-transparent border-0"><i class="bi bi-file-earmark-person" style="color: var(--acc) !important;"></i></span>
                         <label>
                             <input type="text" name="firstName" class="form-control bg-transparent border-0 text-white"
-                                   placeholder="Pierre" required style="color: var(--txt) !important;">
+                                placeholder="Pierre" required style="color: var(--txt) !important;">
                         </label>
                     </div>
                 </div>
@@ -48,7 +48,7 @@
                         <span class="input-group-text bg-transparent border-0"><i class="bi bi-person text-info" style="color: var(--acc) !important;"></i></span>
                         <label>
                             <input type="text" name="pseudo" class="form-control bg-transparent border-0 text-white"
-                                   placeholder="Pseudonyme" required style="color: var(--txt) !important;">
+                                placeholder="Pseudonyme" required style="color: var(--txt) !important;">
                         </label>
                     </div>
                 </div>
@@ -59,7 +59,7 @@
                         <span class="input-group-text bg-transparent border-0"><i class="bi bi-key" style="color: var(--acc) !important;"></i></span>
                         <label>
                             <input type="password" name="password" class="form-control bg-transparent border-0 text-white"
-                                   placeholder="••••••••" required style="color: var(--txt) !important;">
+                                placeholder="••••••••" required style="color: var(--txt) !important;">
                         </label>
                     </div>
                 </div>
@@ -70,7 +70,7 @@
                         <span class="input-group-text bg-transparent border-0"><i class="bi bi-envelope" style="color: var(--acc) !important;"></i></span>
                         <label>
                             <input type="text" name="email" class="form-control bg-transparent border-0 text-white"
-                                   placeholder="E-mail..." style="color: var(--txt) !important;">
+                                placeholder="E-mail..." style="color: var(--txt) !important;">
                         </label>
                     </div>
                 </div>
@@ -81,12 +81,24 @@
                         <span class="input-group-text bg-transparent border-0"><i class="bi bi-telephone" style="color: var(--acc) !important;"></i></span>
                         <label>
                             <input type="text" name="telephone" class="form-control bg-transparent border-0 text-white"
-                                   placeholder="" style="color: var(--txt) !important;">
+                                placeholder="" style="color: var(--txt) !important;">
                         </label>
                     </div>
                 </div>
 
-                <button type="submit" class="btn-premium w-100 py-3 text-uppercase shadow-sm">
+                <div class="mb-5">
+                    <div class="captcha-container">
+                        <canvas id="captchaCanvas" width="250" height="70"></canvas>
+                        <button id="refreshBtn" type="button">↻</button>
+
+                        <input type="text" id="userInput" placeholder="Entrez le texte" autocomplete="off"/>
+                        <button id="validateBtn" type="button">Valider</button>
+                        <p id="message"></p>
+
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-premium w-100 py-3 text-uppercase shadow-sm" id="registerBtn" disabled>
                     Initialiser la session <i class="bi bi-key ms-2"></i>
                 </button>
             </form>
@@ -100,3 +112,5 @@
 
     </div>
 </main>
+
+<script src="/js/captcha.js"></script>
