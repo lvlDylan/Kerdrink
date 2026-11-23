@@ -62,4 +62,13 @@ class Helper
         $text = substr($decode, $ivLength);
         return openssl_decrypt($text, $_ENV["CIPHER_METHOD"], $_ENV["CIPHER_KEY"], OPENSSL_RAW_DATA, $iv);
     }
+
+    public static function uncipher_user(array $user): ?array {
+        if (!$user)
+            return null;
+
+        $user["prenom"] = $user["prenom"] != null ? self::uncipher_data($user["prenom"]) : $user["prenom"];
+        $user["nom"] = $user["nom"] != null ? self::uncipher_data($user["nom"]) : $user["nom"];
+        return $user;
+    }
 }

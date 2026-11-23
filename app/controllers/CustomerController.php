@@ -5,7 +5,7 @@ class CustomerController
     public function index(PDO $db): void
     {
         $customerModel = new Customer($db);
-        $customer = $customerModel->getById($_SESSION["user"]["idClient"]);
+        $customer = Helper::uncipher_user($customerModel->getById($_SESSION["user"]["idClient"]));
         $pageTitle = $customer["prenom"] . " - KerDrink";
 
         ob_start();

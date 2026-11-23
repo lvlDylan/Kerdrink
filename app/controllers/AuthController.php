@@ -126,7 +126,7 @@ class AuthController
         if ($user) {
             if (password_verify($password, $user["pass_hash"])) {
                 Logger::log(LogLevel::INFO, "AuthController.php(login)", $_SERVER["REMOTE_ADDR"] . " s'est conneté sur le compte (" . $login . ").");
-                $_SESSION["user"] = $user;
+                $_SESSION["user"] = Helper::uncipher_user($user);
                 header("location: /accueil");
                 exit();
             }
